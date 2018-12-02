@@ -1,0 +1,28 @@
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+
+Vue.use(VueRouter);
+
+import HelloWorld from '../components/HelloWorld.vue'
+import Postmsg from '../components/Postmsg'
+import Postmsgruslui from '../components/Postmsgruslui'
+
+const routes = [
+    { path: '/HelloWorld', component: HelloWorld },
+    { path: '/Postmsg', component: Postmsg },
+    { path:'/Postmsgruslui',component:Postmsgruslui},
+    // { path:'/p_content/:aid',component:Xianqing},
+    // {
+    //     path: '/content',
+    //     component: Shanping,
+    //     children:[
+    //         { path: 'useradd', component: uar },
+    //         { path: 'userlist', component: uaa }
+    //     ]
+    // }
+    // // { path: '*', redirect: '/' }   /*默认跳转路由*/
+]
+const router = new VueRouter({
+    routes // （缩写）相当于 routes: routes
+})
+export default router;
