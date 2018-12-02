@@ -20,7 +20,7 @@
     </van-cell-group>
         <br>
     <van-cell  v-model="cell_value" title="礼物" is-link arrow-direction="down" @click="change_picker_show" />
-            <van-button type="primary" @click="postmsg_button">提交</van-button>
+            <van-button type="primary" @click="requestData">提交</van-button>
             <van-popup v-model="show" position="bottom" :overlay="false">
                 <van-picker
                         show-toolbar
@@ -62,7 +62,23 @@
             },
             postmsg_button(){
                 this.$router.push({ path:'/Postmsgruslui'})
+            },
+            requestData(){
+        this.$ajax.get('http://localhost:8080/Nayajavaee/Houtai',{
+            params:{
+                name:this.name_uer,
+                phone:this.phone,
+                gift:this.cell_value
             }
+        })
+            .then(resp => {
+                console.log(resp.data);
+                if(resp.data.id)this.$router.push({ path:'/Postmsgruslui'});
+                else  this.$toast(`当前值：${resp.data.id}`);
+            }).catch(err => {             //
+            console.log('请求失败：'+err.status+','+err.statusText);
+        });
+    },
         }
 
     }

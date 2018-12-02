@@ -6,6 +6,8 @@ import { Picker } from 'vant';
 import { Toast } from 'vant';
 import { Popup } from 'vant';
 import { Lazyload } from 'vant';
+import axios from 'axios'
+Vue.prototype.$ajax = axios;
 
 Vue.use(Lazyload,{
     preLoad: 1.3,
