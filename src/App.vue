@@ -2,7 +2,7 @@
   <div id="app">
     <!--<img alt="Vue logo" src="./assets/logo.png">-->
     <!--<HelloWorld msg="Welcome to Your Vue.js App"/>-->
-    <router-link to="/HelloWorld">1</router-link>
+    <!--<router-link to="/HelloWorld">1</router-link>-->
     <router-link to="/Postmsg">2</router-link>
     <router-view></router-view>
     <br>
