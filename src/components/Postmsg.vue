@@ -1,5 +1,6 @@
 <template>
     <div>
+        <audio src="/audios/brithday.mp3" autoplay loop></audio>
     <h2>填写信息栏</h2>
     <br>
     {{name_uer}}{{phone}}
