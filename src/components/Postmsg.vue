@@ -23,8 +23,9 @@
                 v-model="cell_value"
                 label="礼物"
                 type="tel"
-                placeholder="请点击选择"
+                is-link arrow-direction="down"
                 @click="change_picker_show"
+                readonly="true"
         />
     </van-cell-group>
         <br>
