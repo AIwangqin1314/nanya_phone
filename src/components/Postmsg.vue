@@ -83,7 +83,7 @@
                 }else if (/[0-9]/.test(this.name_uer)){
                     this.$toast("姓名不能包含数字");
                 } else {
-                    this.$ajax.get('http://192.204.65.155:8080/Nayajavaee/Houtai',{
+                    this.$ajax.get('http://129.204.65.155:8080/Nayajavaee/Houtai',{
                         params:{
                             name:this.name_uer,
                             phone:this.phone,
@@ -94,7 +94,7 @@
                             console.log(resp.data);
                             // if(resp.data.count_num)this.$router.push({ path:'/Postmsgruslui'});
                             // else
-                            alert(resp.data.count_num);
+                            //alert(resp.data.count_num);
                             this.$toast(`目前一共有：${resp.data.count_num}人跟您有共同愿望`);
                         }).catch(err => {             //
                         console.log('请求失败：'+err.status+','+err.statusText);
