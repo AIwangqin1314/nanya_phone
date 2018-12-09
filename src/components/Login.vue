@@ -64,13 +64,40 @@
                     } else if (/[0-9]/.test(this.username)) {
                         this.$toast("姓名不能包含数字");
                     } else {
-                        this.$router.push({
-                            name: 'post_msg',
-                            params: {
-                                name: this.username,
-                                phone: this.phone
+
+                        this.$ajax.get('http://129.204.65.155:8080/Nayajavaee/Chaxun',{
+                            params:{
+                                // name:this.name_uer,
+                                phone:this.phone,
+                                gift:this.cell_value
                             }
                         })
+                            .then(resp => {
+                                console.log(resp.data);
+                                // if(resp.data.count_num)this.$router.push({ path:'/Postmsgruslui'});
+                                // else
+                                //alert(resp.data.count_num);
+                                if(resp.data.gift===""){
+                                    this.$router.push({
+                                        name: 'post_msg',
+                                        params: {
+                                            name: this.username,
+                                            phone: this.phone
+                                        }
+                                    })
+                                }else {
+                                    this.$toast(`您已经选择礼物，选择的礼物是：`+resp.data.gift);
+                                }
+                            }).catch(err => {             //
+                            console.log('请求失败：'+err.status+','+err.statusText);
+                        });
+                        // this.$router.push({
+                        //     name: 'post_msg',
+                        //     params: {
+                        //         name: this.username,
+                        //         phone: this.phone
+                        //     }
+                        // })
                     }
                 }
             }
