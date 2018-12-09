@@ -7,6 +7,9 @@ import { Toast } from 'vant';
 import { Popup } from 'vant';
 import { Lazyload } from 'vant';
 import axios from 'axios'
+import { Row, Col } from 'vant';
+
+Vue.use(Row).use(Col);
 Vue.prototype.$ajax = axios;
 
 Vue.use(Lazyload,{

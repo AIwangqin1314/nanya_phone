@@ -3,14 +3,18 @@ import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
 
-import HelloWorld from '../components/HelloWorld.vue'
 import Postmsg from '../components/Postmsg'
 import Postmsgruslui from '../components/Postmsgruslui'
+import Login from '../components/Login'
+import Register from '../components/Register'
 
 const routes = [
-    { path: '/HelloWorld', component: HelloWorld },
-    { path: '/Postmsg', component: Postmsg },
+    // { path: '/HelloWorld', component: HelloWorld },
+    { path: '/Postmsg', component: Postmsg ,name:"post_msg" },
     { path:'/Postmsgruslui',component:Postmsgruslui},
+    { path:'/Login',component:Login},
+    { path:'/Register',component:Register},
+    { path:'/',component:Login},
     // { path:'/p_content/:aid',component:Xianqing},
     // {
     //     path: '/content',

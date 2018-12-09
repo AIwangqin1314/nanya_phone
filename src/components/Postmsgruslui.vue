@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1>提交结果</h1>
-        <h4>小宝宝生日快乐</h4>
+        <h4>生日快乐</h4>
         <!--<img src=""  v-lazy="imageList" >-->
         <img alt="生日快乐" src="../assets/logo.png">
     </div>

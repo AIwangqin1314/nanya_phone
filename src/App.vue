@@ -1,12 +1,16 @@
 <template>
   <div id="app">
+    <div>
+      <van-row type="flex" class="top_button">
+        <router-link to="/Login">返回</router-link>
+      </van-row>
+    </div>
     <!--<img alt="Vue logo" src="./assets/logo.png">-->
     <!--<HelloWorld msg="Welcome to Your Vue.js App"/>-->
     <!--<router-link to="/HelloWorld">1</router-link>-->
-    <router-link to="/Postmsg">2</router-link>
+    <!--<router-link to="/Postmsg">返回</router-link>-->
     <router-view></router-view>
-    <br>
-    <!--<Postmsg ></Postmsg>-->
+
   </div>
 </template>
 
@@ -30,6 +34,13 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 30px;
 }
+  .top_button{
+      position: fixed;
+      top: 0px;
+      left: 0px;
+     /*// height: 30px;*/
+      /*width: 100%;*/
+  }
 </style>

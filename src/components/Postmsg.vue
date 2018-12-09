@@ -1,27 +1,26 @@
 <template>
     <div>
-        <audio src="/audios/brithday.mp3" autoplay loop></audio>
-    <h2>填写信息栏</h2>
+        <!--<audio src="/audios/brithday.mp3" autoplay loop></audio>-->
+        <img src="http://nxha.ynnsd.com/Areas/Pages/Content/images/img_logo.png" class="img_login" />
+    <h4>愿望选择</h4>
     <br>
-    {{name_uer}}{{phone}}
-    <br>
-    <van-cell-group>
+    <van-cell-group id="cell_all" >
         <van-field
                 v-model="name_uer"
                 label="姓名"
-                placeholder="请输入姓名"
 
+                disabled
         />
         <van-field
                 v-model="phone"
                 label="手机号"
                 type="tel"
-                placeholder="请输入手机号"
 
+                disabled
         />
         <van-field
                 v-model="cell_value"
-                label="礼物"
+                label="选择礼物"
                 type="tel"
                 is-link arrow-direction="down"
                 @click="change_picker_show"
@@ -73,18 +72,20 @@
             postmsg_button(){
                 this.$router.push({ path:'/Postmsgruslui'})
             },
-            requestData(){if (this.name_uer ==="") {
-                this.$toast("姓名不能空");
-            }else if (this.phone===''){
-                this.$toast("电话不能空");
-            }else if (this.cell_value===""){
+            requestData(){
+                // if (this.name_uer ==="") {
+                // this.$toast("姓名不能空");
+                // }else if (this.phone===''){
+                // this.$toast("电话不能空");
+                // }else
+                    if (this.cell_value===""){
                 this.$toast("礼物未选择");
-            }else {
-                if (!/^1[3456789]\d{9}$/.test(this.phone)) {
-                    this.$toast("手机号格式不对");
-                }else if (/[0-9]/.test(this.name_uer)){
-                    this.$toast("姓名不能包含数字");
-                } else {
+                }else {
+                // if (!/^1[3456789]\d{9}$/.test(this.phone)) {
+                //     this.$toast("手机号格式不对");
+                // }else if (/[0-9]/.test(this.name_uer)){
+                //     this.$toast("姓名不能包含数字");
+                // } else {
                     this.$ajax.get('http://129.204.65.155:8080/Nayajavaee/Houtai',{
                         params:{
                             name:this.name_uer,
@@ -102,7 +103,7 @@
                         console.log('请求失败：'+err.status+','+err.statusText);
                     });
                 }
-            }
+            // }
         // this.$ajax.get('http://localhost:8080/Nayajavaee/Houtai',{
         //     params:{
         //         name:this.name_uer,
@@ -118,8 +119,16 @@
         //     console.log('请求失败：'+err.status+','+err.statusText);
         // });
     },
+        },
+        mounted:function(){
+            this.name_uer=this.$route.params.name;
+            this.phone=this.$route.params.phone;
         }
-
     }
 </script>
+<style>
+   #cell_all{
+        text-align:left;
+    }
+</style>
 
