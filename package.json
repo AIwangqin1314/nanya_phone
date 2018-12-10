@@ -12,6 +12,7 @@
     "vant": "^1.4.7",
     "vue": "^2.5.17",
     "vue-audio": "^0.0.12",
+    "vue-print-nb": "^1.0.3",
     "vue-router": "^3.0.2"
   },
   "devDependencies": {

@@ -1,5 +1,5 @@
 <template>
-<div>
+<div >
     <img src="http://nxha.ynnsd.com/Areas/Pages/Content/images/img_logo.png" class="img_login" />
     <h4>登录</h4>
     <van-cell-group id="cell_all">
@@ -33,6 +33,7 @@
         <!--<router-link to="/Register" class="left_button">注册</router-link>-->
         <!--<router-link to="/Register" class="left_button">注册</router-link>-->
     </div>
+
 </div>
 </template>
 

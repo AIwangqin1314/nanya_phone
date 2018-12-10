@@ -7,6 +7,7 @@ import Postmsg from '../components/Postmsg'
 import Postmsgruslui from '../components/Postmsgruslui'
 import Login from '../components/Login'
 import Register from '../components/Register'
+import print from '../components/print'
 
 const routes = [
     // { path: '/HelloWorld', component: HelloWorld },
@@ -15,6 +16,7 @@ const routes = [
     { path:'/Login',component:Login},
     { path:'/Register',component:Register},
     { path:'/',component:Login},
+    { path:'/print',component:print},
     // { path:'/p_content/:aid',component:Xianqing},
     // {
     //     path: '/content',

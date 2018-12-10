@@ -9,6 +9,9 @@ import { Lazyload } from 'vant';
 import axios from 'axios'
 import { Row, Col } from 'vant';
 
+
+
+
 Vue.use(Row).use(Col);
 Vue.prototype.$ajax = axios;
 
