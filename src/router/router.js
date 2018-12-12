@@ -8,6 +8,7 @@ import Postmsgruslui from '../components/Postmsgruslui'
 import Login from '../components/Login'
 import Register from '../components/Register'
 import print from '../components/print'
+import get_id from '../components/Getid'
 
 const routes = [
     // { path: '/HelloWorld', component: HelloWorld },
@@ -17,6 +18,7 @@ const routes = [
     { path:'/Register',component:Register},
     { path:'/',component:Login},
     { path:'/print',component:print},
+    { path:'/get_id',component:get_id},
     // { path:'/p_content/:aid',component:Xianqing},
     // {
     //     path: '/content',

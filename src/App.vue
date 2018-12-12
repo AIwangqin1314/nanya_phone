@@ -2,7 +2,7 @@
   <div id="app">
     <div>
       <van-row type="flex" class="top_button">
-        <router-link to="/print">返回</router-link>
+        <router-link to="/get_id">返回</router-link>
       </van-row>
     </div>
     <!--<img alt="Vue logo" src="./assets/logo.png">-->

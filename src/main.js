@@ -8,6 +8,11 @@ import { Popup } from 'vant';
 import { Lazyload } from 'vant';
 import axios from 'axios'
 import { Row, Col } from 'vant';
+import { Dialog } from 'vant';
+import { Loading } from 'vant';
+
+Vue.use(Loading);
+Vue.use(Dialog);
 
 
 
