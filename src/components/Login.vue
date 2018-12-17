@@ -66,7 +66,7 @@
                         this.$toast("姓名不能包含数字");
                     } else {
 
-                        this.$ajax.get('http://129.204.65.155:8080/Nayajavaee/Chaxun',{
+                        this.$ajax.get('http://129.204.65.155/Nayajavaee/Chaxun',{
                             params:{
                                 // name:this.name_uer,
                                 phone:this.phone,

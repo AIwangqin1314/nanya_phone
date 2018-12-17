@@ -86,7 +86,7 @@
                 // }else if (/[0-9]/.test(this.name_uer)){
                 //     this.$toast("姓名不能包含数字");
                 // } else {
-                    this.$ajax.get('http://129.204.65.155:8080/Nayajavaee/Houtai',{
+                    this.$ajax.get('http://129.204.65.155/Nayajavaee/Houtai',{
                         params:{
                             name:this.name_uer,
                             phone:this.phone,
