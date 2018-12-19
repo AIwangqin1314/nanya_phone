@@ -7,21 +7,20 @@
     <van-cell-group id="cell_all" >
         <van-field
                 v-model="name_uer"
-                label="姓名"
+                label="用户名"
 
                 disabled
         />
         <van-field
-                v-model="phone"
-                label="手机号"
-                type="tel"
+                v-model="BirthDay"
+                label="星座"
+
 
                 disabled
         />
         <van-field
-                v-model="cell_value"
-                label="选择礼物"
-                type="tel"
+                v-model="wish"
+                label="愿望填写，不超6个字"
                 is-link arrow-direction="down"
                 @click="change_picker_show"
                 readonly="true"
@@ -49,9 +48,9 @@
             return{
                 putinmsg:"",
                 value:"",
-                phone:"",
+                BirthDay:"",
                 name_uer:"",
-                cell_value:"",
+                wish:"",
                 columns: ['手机', 'iPad', '苹果', '电视', '洗衣机'],
                 show:false
             }
@@ -60,7 +59,7 @@
             onConfirm(picker, value, index){
                 // this.$toast(`当前值：${value}, 当前索引：${index}`);
                 this.show=false;
-                this.cell_value=this.columns[value];
+                this.wish=this.columns[value];
             },
             onCancel(){
                 this.show=false;
@@ -73,61 +72,36 @@
                 this.$router.push({ path:'/Postmsgruslui'})
             },
             requestData(){
-                // if (this.name_uer ==="") {
-                // this.$toast("姓名不能空");
-                // }else if (this.phone===''){
-                // this.$toast("电话不能空");
-                // }else
-                    if (this.cell_value===""){
-                this.$toast("礼物未选择");
+                    if (this.wish===""){
+                this.$toast("愿望未填写");
                 }else {
-                // if (!/^1[3456789]\d{9}$/.test(this.phone)) {
-                //     this.$toast("手机号格式不对");
-                // }else if (/[0-9]/.test(this.name_uer)){
-                //     this.$toast("姓名不能包含数字");
-                // } else {
                     this.$ajax.get('http://129.204.65.155/Nayajavaee/Houtai',{
                         params:{
                             name:this.name_uer,
-                            phone:this.phone,
-                            gift:this.cell_value
+                            BirthDay:this.BirthDay,
+                            wish:this.wish
                         }
                     })
                         .then(resp => {
                             console.log(resp.data);
-                            // if(resp.data.count_num)this.$router.push({ path:'/Postmsgruslui'});
-                            // else
-                            //alert(resp.data.count_num);
-                            if(resp.data.count_num==="无"){
-                                this.$toast(`您已经提交过了，请勿重复提交`);
+                            if(resp.data.wish_id!=null){
+                                this.$router.push({ path:'/Postmsgruslui',params:{
+                                        wish_id:resp.data.wish_id,
+                                        start_id:resp.data.start_id,
+                                    }});
                             }else {
-                                this.$toast(`目前一共有：${resp.data.count_num}人跟您有共同愿望`);
+                                this.$toast(``);
                             }
-                            //this.$toast(`目前一共有：${resp.data.count_num}人跟您有共同愿望`);
                         }).catch(err => {             //
                         console.log('请求失败：'+err.status+','+err.statusText);
+                        this.$toast(`网络连接失败，请重试！`);
                     });
                 }
-            // }
-        // this.$ajax.get('http://localhost:8080/Nayajavaee/Houtai',{
-        //     params:{
-        //         name:this.name_uer,
-        //         phone:this.phone,
-        //         gift:this.cell_value
-        //     }
-        // })
-        //     .then(resp => {
-        //         console.log(resp.data);
-        //         if(resp.data.id)this.$router.push({ path:'/Postmsgruslui'});
-        //         else  this.$toast(`当前值：${resp.data.id}`);
-        //     }).catch(err => {             //
-        //     console.log('请求失败：'+err.status+','+err.statusText);
-        // });
     },
         },
         mounted:function(){
-            this.name_uer=this.$route.params.name;
-            this.phone=this.$route.params.phone;
+            this.name_uer=this.$route.params.strName;
+            this.BirthDay=this.$route.params.BirthDay;
         }
     }
 </script>

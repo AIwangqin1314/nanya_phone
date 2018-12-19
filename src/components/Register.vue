@@ -50,13 +50,16 @@
 </template>
 
 <script>
+
     export default {
         data(){
             return{
+                id:0,
                 phone:"",
                 sex:"",
                 username:"",
                 show:false,
+                BirthDay:"",
                 columns: ['男', '女'],
             }
         },
@@ -93,7 +96,54 @@
                     } else if (/[0-9]/.test(this.username)) {
                         this.$toast("姓名不能包含数字");
                     } else {
-                        this.$toast(this.username+this.sex+this.phone);
+                        var da1 =  JSON.stringify({
+                            id:this.id,
+                            method:"nymc_member_register",
+                            params: {
+                                key: "0C46AF1DB72A28AE",
+                                strName: this.username,
+                                strSex: this.sex,
+                                strMobile: this.phone,
+                                dtBirthDay: this.BirthDay
+                            }
+                        });
+                        //this.$toast(this.username+this.sex+this.phone);
+                        this.$ajax.post("/api", da1,
+                            {  // "Access-Token": "84c6635800b14e0eba4f7ece65e095a1",
+                                crossDomain: true,headers: {
+                                    "Content-Type": "text/plain",
+                                }
+                            }
+                        )
+                            .then( response=>{
+                                this.id++;
+                                console.log(response);
+                                console.log(response.request.response);
+                                this.$toast(response.request.response);
+                                //成功后要注册后台服务
+                                this.$ajax.get('http://129.204.65.155/Nayajavaee/Houtai',{
+                                    params:{
+                                        strName:"",
+                                        phone:"",
+                                        strSex:"",
+                                        strCardNo:"",
+                                        BirthDay:""
+                                    }
+                                })
+                                    .then(resp => {
+                                        console.log(resp.data);
+                                        if(resp.data.status==="ok"){
+                                            this.$router.push({ path:'/Postmsg'});
+                                        }else {
+                                            this.$toast("注册失败，请重试");
+                                        }
+                                    }).catch(err => {             //
+                                    console.log('请求失败：'+err.status+','+err.statusText);
+                                });
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                            });
                     }
                 }
             }

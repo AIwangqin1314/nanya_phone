@@ -38,7 +38,6 @@
 </template>
 
 <script>
-    import Qs from 'qs'
     export default {
         data() {
             return {
@@ -56,118 +55,67 @@
                 this.$router.push({path: '/Register'})
             },
             post_msg_click() {
-                if (this.username === "") {
-                    this.$toast("姓名不能空");
-                } else if (this.phone === '') {
+                if (this.username === '') {
+                     this.$toast("用户名不能空");
+                }else if (this.phone === '') {
                     this.$toast("电话不能空");
                 } else {
                     if (!/^1[3456789]\d{9}$/.test(this.phone)) {
                         this.$toast("手机号格式不对");
-                    } else if (/[0-9]/.test(this.username)) {
-                        this.$toast("姓名不能包含数字");
-                    } else {
-
-                        var da1 =  JSON.stringify({
-                            id:0,
-                            method:"nymc_member_register",
-                            params: {
-                                key: "0C46AF1DB72A28AE",
-                                strName: "one piece",
-                                strSex: "男",
-                                strMobile: "18108853841",
-                                dtBirthDay: "1980,10,01"
-                            }
-                        });
+                    }  else {
                         var da2 =  JSON.stringify({
                             id:0,
                             method:"nymc_member_info",
                             params: {
                                 key: "0C46AF1DB72A28AE",
-                                userName: "18108853841",
+                                userName: this.phone,
                             }
                         });
-                        console.log(da1);
-                        this.$ajax.post("http://nxha.ynnsd.com/api/v1/Nymc/index.aspx", da2,
-
-                            {   "Access-Token": "84c6635800b14e0eba4f7ece65e095a1",
-                                crossDomain: true,headers: {
+                        this.$ajax.post("/api", da2,
+                            {
+                                crossDomain: true,
+                                headers: {
                                     "Content-Type": "text/plain",
                             }
                         }
                     )
-                            .then(function (response) {
+                            .then( response=>{
                                 console.log(response);
+                                console.log(response.request.response);
+                                this.$toast(response.request.response);
+
+                                if (1) {
+                                    this.$ajax.get('http://129.204.65.155/Nayajavaee/Houtai',{
+                                        params:{
+                                            strName:this.username,
+                                            phone:this.phone,
+                                            strSex:"null",
+                                            strCardNo:"",
+                                            BirthDay:""
+                                        }
+                                    })
+                                        .then(resp => {
+                                            console.log(resp.data);
+                                            if(resp.data.status==="ok"){
+                                                this.$router.push({ path:'/Postmsg',params:{
+                                                        BirthDay:"",
+                                                        strName:this.username,
+                                                    }});
+                                            }else {
+                                                this.$toast("登录失败，请重试");
+                                            }
+                                        }).catch(err => {             //
+                                        console.log('网络请求失败：'+err.status+','+err.statusText);
+                                        this.$toast("网络请求失败，请重试");
+                                    });
+                                }else{
+                                    this.$toast("该用户未注册，请到注册界面注册!");
+                                }
                             })
                             .catch(function (error) {
                                 console.log(error);
+                                this.$toast("网络错误请重试!");
                             });
-
-
-                        // this.$ajax({
-                        //     type : "POST",
-                        //     url : "http://nxha.ynnsd.com/api/v1/Nymc/index.aspx",
-                        //     headers: {
-                        //         "Content-Type": "text/plain; charset=utf-8",
-                        //         "X-JSON-RPC":"nymc_member_register"
-                        //     },
-                        //     data : {
-                        //         id:0,
-                        //         method:"nymc_member_register",
-                        //         params: {
-                        //             key: "0C46AF1DB72A28AE",
-                        //             strName: "one piece",
-                        //             strSex: "男",
-                        //             strMobile: "18108853842",
-                        //             dtBirthDay: "1980,10,01"
-                        //         }
-                        //     },
-                        //     success : function(data) {
-                        //         console.log(data);
-                        //         // var message = $.parseJSON(data);//后台返回的json数据需要转为对象
-                        //         // vue.selectById=message;//把后台返回的JSON数据赋给selectById
-                        //     },
-                        //     error : function(){
-                        //         alert("错误");
-                        //     }
-                        //
-                        // });
-                        // this.$ajax.post('http://nxha.ynnsd.com/api/v1/Nymc/index.aspx',params:{
-                        //
-                        // })
-
-                        // this.$ajax.get('http://129.204.65.155/Nayajavaee/Chaxun',{
-                        //     params:{
-                        //         // name:this.name_uer,
-                        //         phone:this.phone,
-                        //         gift:this.cell_value
-                        //     }
-                        // })
-                        //     .then(resp => {
-                        //         console.log(resp.data);
-                        //         // if(resp.data.count_num)this.$router.push({ path:'/Postmsgruslui'});
-                        //         // else
-                        //         //alert(resp.data.count_num);
-                        //         if(resp.data.gift===""){
-                        //             this.$router.push({
-                        //                 name: 'post_msg',
-                        //                 params: {
-                        //                     name: this.username,
-                        //                     phone: this.phone
-                        //                 }
-                        //             })
-                        //         }else {
-                        //             this.$toast(`您已经选择礼物，选择的礼物是：`+resp.data.gift);
-                        //         }
-                        //     }).catch(err => {             //
-                        //     console.log('请求失败：'+err.status+','+err.statusText);
-                        // });
-                        // this.$router.push({
-                        //     name: 'post_msg',
-                        //     params: {
-                        //         name: this.username,
-                        //         phone: this.phone
-                        //     }
-                        // })
                     }
                 }
             }
