@@ -41,10 +41,13 @@
     export default {
         data() {
             return {
+                id:0,
                 username: "",
                 value: "",
                 phone: "",
                 cell_value: "",
+                BirthDay:"",
+                strSex:"",
                 columns: ['手机', 'iPad', '苹果', '电视', '洗衣机'],
                 show: false,
 
@@ -64,7 +67,7 @@
                         this.$toast("手机号格式不对");
                     }  else {
                         var da2 =  JSON.stringify({
-                            id:0,
+                            id:this.id,
                             method:"nymc_member_info",
                             params: {
                                 key: "0C46AF1DB72A28AE",
@@ -79,37 +82,41 @@
                             }
                         }
                     )
-                            .then( response=>{
-                                console.log(response);
-                                console.log(response.request.response);
-                                this.$toast(response.request.response);
-
-                                if (1) {
-                                    this.$ajax.get('http://129.204.65.155/Nayajavaee/Houtai',{
-                                        params:{
-                                            strName:this.username,
-                                            phone:this.phone,
-                                            strSex:"null",
-                                            strCardNo:"",
-                                            BirthDay:""
-                                        }
-                                    })
-                                        .then(resp => {
-                                            console.log(resp.data);
-                                            if(resp.data.status==="ok"){
-                                                this.$router.push({ path:'/Postmsg',params:{
-                                                        BirthDay:"",
-                                                        strName:this.username,
-                                                    }});
-                                            }else {
-                                                this.$toast("登录失败，请重试");
+                            .then( respny=>{
+                                    this.id++;
+                                    this.BirthDay=respny.data.result.data.dtBirthDay;
+                                    this.strCardNo=respny.data.result.data.strCards;
+                                    console.log(this.BirthDay+this.strCardNo+this.id);
+                                    if (respny.data.result.data.HasException===false) {
+                                        console.log("自己服务器请求");
+                                        this.$ajax.get('http://129.204.65.155/Nayajavaee/Houtai', {
+                                            params: {
+                                                strName: this.username,
+                                                phone: this.phone,
+                                                strSex: "null",
+                                                strCardNo: this.strCardNo,
+                                                BirthDay: this.BirthDay
                                             }
-                                        }).catch(err => {             //
-                                        console.log('网络请求失败：'+err.status+','+err.statusText);
-                                        this.$toast("网络请求失败，请重试");
-                                    });
+                                        })
+                                            .then(resp => {
+                                                console.log(resp.data);
+                                                if (resp.data.status === "ok") {
+                                                    this.$router.push({
+                                                        path: '/Postmsg', params: {
+                                                            BirthDay: "",
+                                                            strName: this.username,
+                                                        }
+                                                    });
+                                                } else {
+                                                    this.$toast("登录失败，请重试");
+                                                }
+                                            }).catch(err => {             //
+                                            console.log('网络请求失败：' + err.status + ',' + err.statusText);
+                                            this.$toast("网络请求失败，请重试");
+                                        });
                                 }else{
-                                    this.$toast("该用户未注册，请到注册界面注册!");
+                                   // this.$toast("该用户未注册，请到注册界面注册!");
+                                        this.$toast(respny.data.result.data.Exception+",请到注册界面注册!");
                                 }
                             })
                             .catch(function (error) {

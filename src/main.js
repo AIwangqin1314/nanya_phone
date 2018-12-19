@@ -10,7 +10,9 @@ import axios from 'axios'
 import { Row, Col } from 'vant';
 import { Dialog } from 'vant';
 import { Loading } from 'vant';
+import { DatetimePicker } from 'vant';
 
+Vue.use(DatetimePicker);
 
 Vue.use(Loading);
 Vue.use(Dialog);

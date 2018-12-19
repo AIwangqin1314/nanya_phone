@@ -26,16 +26,31 @@
                     placeholder="请输入电话"
                     required
             />
+            <van-field
+                    v-model="BirthDay"
+                    label="生日"
+                    is-link arrow-direction="down"
+                    @click="change_picker_show"
+                    readonly="true"
+                    required
+            />
+
         </van-cell-group>
+
         <br>
         <van-button round type="danger" @click="up_register">注册</van-button>
 
-        <!--<van-popup v-model="show">性别选择-->
-            <!--<van-radio-group >-->
-                <!--<van-radio name="1" @click="select_man">男</van-radio>-->
-                <!--<van-radio name="2" @click="select_woman">女</van-radio>-->
-            <!--</van-radio-group>-->
-        <!--</van-popup>-->
+            <van-popup v-model="year" position="bottom" :overlay="false">
+                <van-datetime-picker
+                        v-model="currentDate"
+                        type="date"
+                        :min-date="minDate"
+                        
+                        @cancel="ondateCancel"
+                        @confirm="ondateConfirm"
+                />
+            </van-popup>
+
 
         <van-popup v-model="show" position="bottom" :overlay="false">
             <van-picker
@@ -55,12 +70,16 @@
         data(){
             return{
                 id:0,
+                year:false,
                 phone:"",
                 sex:"",
+                currentDate: new Date(2019, 0, 1),
                 username:"",
                 show:false,
                 BirthDay:"",
+                strCardNo:"",
                 columns: ['男', '女'],
+                minDate: new Date(1950, 0, 1),
             }
         },
         methods:{
@@ -69,20 +88,40 @@
                 this.show=false;
                 if (value===0)this.sex="男";
                 else this.sex="女";
-            },
-            onCancel(){
+            },onCancel(){
                 this.show=false;
                 this.$toast.success("取消选择");
+            },
+            ondateCancel(){
+                this.year=false;
+                this.$toast.success("取消选择");
+            },
+            ondateConfirm( value){
+                // this.$toast(`当前值：${value}, 当前索引：${index}`);
+                this.year=false;
+                this.BirthDay=value;
+                //this.$toast.success("取消选择");
+            },
+
+            change_picker_show(){
+                this.year=true;
+                console.log("点击");
             },
             select_sex(){
                 this.show=true;
             },
-            // select_man(){
-            //     this.sex="男";
-            // },
-            // select_woman(){
-            //     this.sex="女";
-            // },
+            formatter(type, value) {
+                if (type === 'year') {
+                    return value + this.$t('year');
+                }
+                if (type === 'month') {
+                    return value + this.$t('month');
+                }
+                if (type === 'date') {
+                    return value + this.$t('date');
+                }
+                return value;
+            },
             up_register(){
                 if (this.username === "") {
                     this.$toast("姓名不能空");
@@ -107,9 +146,8 @@
                                 dtBirthDay: this.BirthDay
                             }
                         });
-                        //this.$toast(this.username+this.sex+this.phone);
                         this.$ajax.post("/api", da1,
-                            {  // "Access-Token": "84c6635800b14e0eba4f7ece65e095a1",
+                            {
                                 crossDomain: true,headers: {
                                     "Content-Type": "text/plain",
                                 }
@@ -117,29 +155,34 @@
                         )
                             .then( response=>{
                                 this.id++;
-                                console.log(response);
-                                console.log(response.request.response);
-                                this.$toast(response.request.response);
+                                this.strCardNo=response.data.result.data.strCardNo;
+                                //this.$toast(params.request.response);
+                                console.log(this.strCardNo);
                                 //成功后要注册后台服务
-                                this.$ajax.get('http://129.204.65.155/Nayajavaee/Houtai',{
-                                    params:{
-                                        strName:"",
-                                        phone:"",
-                                        strSex:"",
-                                        strCardNo:"",
-                                        BirthDay:""
-                                    }
-                                })
-                                    .then(resp => {
-                                        console.log(resp.data);
-                                        if(resp.data.status==="ok"){
-                                            this.$router.push({ path:'/Postmsg'});
-                                        }else {
-                                            this.$toast("注册失败，请重试");
+                                if (response.data.result.data.HasException===false) {
+                                    this.$ajax.get('http://129.204.65.155/Nayajavaee/Houtai', {
+                                        params: {
+                                            strName: this.username,
+                                            phone: this.phone,
+                                            strSex: this.sex,
+                                            strCardNo: this.strCardNo,
+                                            BirthDay: this.BirthDay
                                         }
-                                    }).catch(err => {             //
-                                    console.log('请求失败：'+err.status+','+err.statusText);
-                                });
+                                    })
+                                        .then(resp => {
+                                            console.log(resp.data);
+                                            if (resp.data.status === "ok") {
+                                                this.$router.push({path: '/Postmsg'});
+                                            } else {
+                                                this.$toast("注册失败，请重试");
+                                            }
+                                        }).catch(err => {             //
+                                        console.log('请求失败：' + err.status + ',' + err.statusText);
+                                    });
+                                }else
+                                {
+                                    this.$toast(response.data.result.data.Exception);
+                                }
                             })
                             .catch(function (error) {
                                 console.log(error);
@@ -151,6 +194,4 @@
     }
 </script>
 
-<style scoped>
 
-</style>
