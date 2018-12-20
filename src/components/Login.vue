@@ -89,31 +89,15 @@
                                     console.log(this.BirthDay+this.strCardNo+this.id);
                                     if (respny.data.result.data.HasException===false) {
                                         console.log("自己服务器请求");
-                                        this.$ajax.get('http://129.204.65.155/Nayajavaee/Houtai', {
+                                            this.$router.push({
+                                            name: 'post_msg',
                                             params: {
-                                                strName: this.username,
+                                                name: this.username,
                                                 phone: this.phone,
-                                                strSex: "null",
-                                                strCardNo: this.strCardNo,
-                                                BirthDay: this.BirthDay
+                                                BirthDay:this.BirthDay,
+                                                strCardNo:this.strCardNo
                                             }
                                         })
-                                            .then(resp => {
-                                                console.log(resp.data);
-                                                if (resp.data.status === "ok") {
-                                                    this.$router.push({
-                                                        path: '/Postmsg', params: {
-                                                            BirthDay: "",
-                                                            strName: this.username,
-                                                        }
-                                                    });
-                                                } else {
-                                                    this.$toast("登录失败，请重试");
-                                                }
-                                            }).catch(err => {             //
-                                            console.log('网络请求失败：' + err.status + ',' + err.statusText);
-                                            this.$toast("网络请求失败，请重试");
-                                        });
                                 }else{
                                    // this.$toast("该用户未注册，请到注册界面注册!");
                                         this.$toast(respny.data.result.data.Exception+",请到注册界面注册!");
