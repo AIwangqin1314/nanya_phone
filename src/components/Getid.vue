@@ -57,7 +57,7 @@
                                 toast.message = "正在启动";
                                 if (this.resp_id === 2) {//验证成功。提示用户，启动现场
                                     //转圈等待，提示启动
-                                    this.$ajax.get('http://localhost:8080/Servicehoutai/Client', {
+                                    this.$ajax.get('/app/Servicehoutai/Client', {
                                         params: {
                                             name: "1",
                                             id: this.num,

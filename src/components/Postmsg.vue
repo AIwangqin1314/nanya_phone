@@ -13,7 +13,7 @@
         />
         <van-field
                 v-model="BirthDay"
-                label="星座"
+                label="生日"
 
 
                 disabled
@@ -50,6 +50,8 @@
                 value:"",
                 BirthDay:"",
                 name_uer:"",
+                strCardNo:"",
+                phone:"",
                 wish:"",
                 columns: ['手机', 'iPad', '苹果', '电视', '洗衣机'],
                 show:false
@@ -75,22 +77,30 @@
                     if (this.wish===""){
                 this.$toast("愿望未填写");
                 }else {
-                    this.$ajax.get('http://129.204.65.155/Nayajavaee/Houtai',{
+                    this.$ajax.get('/app/Nayajavaee/Houtai',{
                         params:{
-                            name:this.name_uer,
-                            BirthDay:this.BirthDay,
-                            wish:this.wish
+                            strName:this.name_uer,
+                            BirthDay:"2018,01,01",
+                            wish:this.wish,
+                            strSex:"登录",
+                            strCardNo:this.BirthDay,
+                            head:"twe",
+                            phone:this.phone
                         }
                     })
                         .then(resp => {
                             console.log(resp.data);
-                            if(resp.data.wish_id!=null){
-                                this.$router.push({ path:'/Postmsgruslui',params:{
-                                        wish_id:resp.data.wish_id,
-                                        start_id:resp.data.start_id,
-                                    }});
+                            if(resp.data.status==="ok"){
+                                this.$router.push({
+                                    name: 'post_resp',
+                                    params: {
+                                        name: this.name_uer,
+                                        picid: resp.data.picid,
+                                    }
+                                })
+
                             }else {
-                                this.$toast(``);
+                                this.$toast(`请求失败请重试！`);
                             }
                         }).catch(err => {             //
                         console.log('请求失败：'+err.status+','+err.statusText);
@@ -100,8 +110,10 @@
     },
         },
         mounted:function(){
-            this.name_uer=this.$route.params.strName;
+            this.name_uer=this.$route.params.name;
             this.BirthDay=this.$route.params.BirthDay;
+            this.phone=this.$route.params.phone;
+            this.strCardNo=this.$route.params.strCardNo;
         }
     }
 </script>

@@ -13,7 +13,7 @@ import get_id from '../components/Getid'
 const routes = [
     // { path: '/HelloWorld', component: HelloWorld },
     { path: '/Postmsg', component: Postmsg ,name:"post_msg" },
-    { path:'/Postmsgruslui',component:Postmsgruslui},
+    { path:'/Postmsgruslui',component:Postmsgruslui,name:"post_resp"},
     { path:'/Login',component:Login},
     { path:'/Register',component:Register},
     { path:'/',component:Login},
