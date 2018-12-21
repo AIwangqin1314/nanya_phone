@@ -48,6 +48,7 @@
             return{
                 putinmsg:"",
                 value:"",
+                Ssex:"",
                 BirthDay:"",
                 name_uer:"",
                 strCardNo:"",
@@ -82,7 +83,7 @@
                             strName:this.name_uer,
                             BirthDay:this.BirthDay,
                             wish:this.wish,
-                            strSex:"登录",
+                            strSex:this.Ssex,
                             strCardNo:this.strCardNo,
                             head:"twe",
                             phone:this.phone
@@ -114,6 +115,12 @@
             this.BirthDay=this.$route.params.BirthDay.substr(0,10);
             this.phone=this.$route.params.phone;
             this.strCardNo=this.$route.params.strCardNo;
+            this.Ssex=this.$route.params.strSex;
+            console.log(this.Ssex);
+            if (this.Ssex===null) {
+                this.Ssex="登录";
+            }
+            console.log(this.Ssex);
         }
     }
 </script>

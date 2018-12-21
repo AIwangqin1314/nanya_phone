@@ -40,12 +40,12 @@
         <br>
         <van-button round type="danger" @click="up_register">注册</van-button>
 
-            <van-popup v-model="year" position="bottom" :overlay="false">
+            <van-popup v-model="dateTimeshow" position="bottom" :overlay="false">
                 <van-datetime-picker
-                        v-model="currentDate"
+                        v-model="currentDate3"
                         type="date"
                         :min-date="minDate"
-                        
+                        :formatter="formatter"
                         @cancel="ondateCancel"
                         @confirm="ondateConfirm"
                 />
@@ -65,12 +65,12 @@
 </template>
 
 <script>
-
+    import { formatDate } from './Dt/Dt';
     export default {
         data(){
             return{
                 id:0,
-                year:false,
+                dateTimeshow:false,
                 phone:"",
                 sex:"",
                 currentDate: new Date(2019, 0, 1),
@@ -78,6 +78,9 @@
                 show:false,
                 BirthDay:"",
                 strCardNo:"",
+                year: '年',
+                month: '月',
+                date:"日",
                 columns: ['男', '女'],
                 minDate: new Date(1950, 0, 1),
             }
@@ -93,32 +96,29 @@
                 this.$toast.success("取消选择");
             },
             ondateCancel(){
-                this.year=false;
+                this.dateTimeshow=false;
                 this.$toast.success("取消选择");
             },
             ondateConfirm( value){
-                // this.$toast(`当前值：${value}, 当前索引：${index}`);
-                this.year=false;
-                this.BirthDay=value;
-                //this.$toast.success("取消选择");
+                this.dateTimeshow=false;
+                this.BirthDay=formatDate(value,"yyyy-MM-dd");
             },
 
             change_picker_show(){
-                this.year=true;
-                console.log("点击");
+                this.dateTimeshow=true;
             },
             select_sex(){
                 this.show=true;
             },
             formatter(type, value) {
                 if (type === 'year') {
-                    return value + this.$t('year');
+                    return value + this.year;
                 }
                 if (type === 'month') {
-                    return value + this.$t('month');
+                    return value + this.month;
                 }
-                if (type === 'date') {
-                    return value + this.$t('date');
+                if (type === 'day') {
+                    return value + this.date;
                 }
                 return value;
             },
@@ -160,28 +160,24 @@
                                 console.log(this.strCardNo);
                                 //成功后要注册后台服务
                                 if (response.data.result.data.HasException===false) {
-                                    this.$ajax.get('http://129.204.65.155/Nayajavaee/Houtai', {
+                                    this.$router.push({
+                                        name: 'post_msg',
                                         params: {
-                                            strName: this.username,
+                                            name: this.username,
                                             phone: this.phone,
+                                            BirthDay:this.BirthDay,
                                             strSex: this.sex,
-                                            strCardNo: this.strCardNo,
-                                            BirthDay: this.BirthDay
+                                            strCardNo:this.strCardNo
                                         }
                                     })
-                                        .then(resp => {
-                                            console.log(resp.data);
-                                            if (resp.data.status === "ok") {
-                                                this.$router.push({path: '/Postmsg'});
-                                            } else {
-                                                this.$toast("注册失败，请重试");
-                                            }
-                                        }).catch(err => {             //
-                                        console.log('请求失败：' + err.status + ',' + err.statusText);
-                                    });
-                                }else
-                                {
-                                    this.$toast(response.data.result.data.Exception);
+                                }else{
+                                    if(response.data.result.status==="ok") {
+                                        // this.$toast("该用户未注册，请到注册界面注册!");
+                                        this.$toast(respny.data.result.data.Exception + ",请到登录界面登录!");
+                                    }else
+                                    {
+                                        this.$toast("注册失败,请重试");
+                                    }
                                 }
                             })
                             .catch(function (error) {
