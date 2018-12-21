@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>提交结果</h1>
+        <h4>运势图</h4>
         <img alt="运势图" src=""  v-lazy="imageList"  class="img_post">
 
     </div>
@@ -26,7 +26,7 @@
 
 <style>
     .img_post{
-        width: 80%;
-        height: 80%;
+        width: 100%;
+        height: 90%;
     }
 </style>

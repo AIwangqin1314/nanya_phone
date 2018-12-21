@@ -21,7 +21,7 @@
         <van-field
                 v-model="wish"
                 label="愿望填写"
-                placeholder="不超10个字"
+                placeholder="不超10个汉字或字母"
                 required
         />
     </van-cell-group>
