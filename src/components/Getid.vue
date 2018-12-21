@@ -2,8 +2,7 @@
     <div>
         <img src="http://nxha.ynnsd.com/Areas/Pages/Content/images/img_logo.png" class="img_login" />
         <br>
-        <h5>验证手机号</h5>
-        <br>
+        <h3>验证手机号</h3>
         <van-cell-group>
             <van-field v-model="ID_value" placeholder="请输入号码" />
         </van-cell-group>
@@ -42,7 +41,7 @@
                         message: "正在验证"
                     });
                     this.resp_id = 1;
-                    this.$ajax.get('/app', {
+                    this.$ajax.get('/app/Nayajavaee/Houtai', {
                         params: {
                             phone: this.ID_value,
                             head: "one"
@@ -69,9 +68,16 @@
                                             console.log(resp.data);
                                             if (resp.data.stuat === 1) {
                                                // toast.message = resp.data.jieguo;
+                                                if(resp.data.jieguo==="有人"){
+                                                    toast.message = "有人使用，请稍后重试！";
+                                                }else if (resp.data.jieguo==="无人站") {
+                                                    toast.message = "请站在台上，请稍后重试！";
+                                                }else {
+                                                    toast.message = "设备断线，请稍后重试！";
+                                                }
                                                 this.$toast.clear();
                                             } else {
-                                                toast.message = "请重试";
+                                                toast.message = resp.data.jieguo;
                                                 this.$toast.clear();
                                             }
                                         }).catch(err => {             //

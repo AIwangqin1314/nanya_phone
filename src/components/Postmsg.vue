@@ -81,7 +81,7 @@
                         this.$toast("愿望填写超过10个字,请删除");
                     }else {
                         console.log(this.wish.length);
-                    this.$ajax.get('/app',{
+                    this.$ajax.get('/app/Nayajavaee/Houtai',{
                         params:{
                             strName:this.name_uer,
                             BirthDay:this.BirthDay,
