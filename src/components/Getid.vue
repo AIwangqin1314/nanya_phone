@@ -2,11 +2,12 @@
     <div>
         <img src="http://nxha.ynnsd.com/Areas/Pages/Content/images/img_logo.png" class="img_login" />
         <br>
-        请输入手机号码：
+        <h5>验证手机号</h5>
         <br>
         <van-cell-group>
-            <van-field v-model="ID_value" placeholder="请输入ID号" />
+            <van-field v-model="ID_value" placeholder="请输入号码" />
         </van-cell-group>
+        <br>
         <van-button round type="danger" @click="get_id" >启动</van-button>
 
     </div>
@@ -41,7 +42,7 @@
                         message: "正在验证"
                     });
                     this.resp_id = 1;
-                    this.$ajax.get('http://118.24.196.206:8080/hh/Houtai', {
+                    this.$ajax.get('/app', {
                         params: {
                             phone: this.ID_value,
                             head: "one"

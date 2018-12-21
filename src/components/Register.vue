@@ -42,7 +42,7 @@
 
             <van-popup v-model="dateTimeshow" position="bottom" :overlay="false">
                 <van-datetime-picker
-                        v-model="currentDate3"
+                        v-model="currentDate"
                         type="date"
                         :min-date="minDate"
                         :formatter="formatter"
@@ -135,7 +135,7 @@
                     if (!/^1[3456789]\d{9}$/.test(this.phone)) {
                         this.$toast("手机号格式不对");
                     } else if (/[0-9]/.test(this.username)) {
-                        this.$toast("姓名不能包含数字");
+                        this.$toast("用户名不能包含数字");
                     } else {
                         var da1 =  JSON.stringify({
                             id:this.id,
