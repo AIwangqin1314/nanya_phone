@@ -124,12 +124,14 @@
             },
             up_register(){
                 if (this.username === "") {
-                    this.$toast("姓名不能空");
+                    this.$toast("用户名不能空");
                 } else if (this.sex === ''){
                     this.$toast("性别未选择");
                 } else if (this.phone === '') {
                     this.$toast("电话不能空");
-                }  else {
+                }  else if (this.BirthDay === '') {
+                    this.$toast("生日未选择");
+                }else {
                     if (!/^1[3456789]\d{9}$/.test(this.phone)) {
                         this.$toast("手机号格式不对");
                     } else if (/[0-9]/.test(this.username)) {

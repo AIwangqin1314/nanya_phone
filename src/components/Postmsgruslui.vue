@@ -26,6 +26,7 @@
 
 <style>
     .img_post{
-
+        width: 80%;
+        height: 80%;
     }
 </style>

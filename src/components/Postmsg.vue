@@ -20,8 +20,8 @@
         />
         <van-field
                 v-model="wish"
-                label="愿望填写，不超6个字"
-                
+                label="愿望填写"
+                placeholder="不超10个字"
                 required
         />
     </van-cell-group>
@@ -77,7 +77,10 @@
             requestData(){
                     if (this.wish===""){
                 this.$toast("愿望未填写");
-                }else {
+                }else if(this.wish.length>10){
+                        this.$toast("愿望填写超过10个字,请删除");
+                    }else {
+                        console.log(this.wish.length);
                     this.$ajax.get('/app',{
                         params:{
                             strName:this.name_uer,
