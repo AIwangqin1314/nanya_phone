@@ -77,13 +77,13 @@
                     if (this.wish===""){
                 this.$toast("愿望未填写");
                 }else {
-                    this.$ajax.get('/app/Nayajavaee/Houtai',{
+                    this.$ajax.get('/app',{
                         params:{
                             strName:this.name_uer,
-                            BirthDay:"2018,01,01",
+                            BirthDay:this.BirthDay,
                             wish:this.wish,
                             strSex:"登录",
-                            strCardNo:this.BirthDay,
+                            strCardNo:this.strCardNo,
                             head:"twe",
                             phone:this.phone
                         }
@@ -111,7 +111,7 @@
         },
         mounted:function(){
             this.name_uer=this.$route.params.name;
-            this.BirthDay=this.$route.params.BirthDay;
+            this.BirthDay=this.$route.params.BirthDay.substr(0,10);
             this.phone=this.$route.params.phone;
             this.strCardNo=this.$route.params.strCardNo;
         }
