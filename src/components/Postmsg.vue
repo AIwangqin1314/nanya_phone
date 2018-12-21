@@ -121,10 +121,6 @@
             this.strCardNo=this.$route.params.strCardNo;
             this.Ssex=this.$route.params.strSex;
             console.log(this.Ssex);
-            if (this.Ssex===null) {
-                this.Ssex="登录";
-            }
-            console.log(this.Ssex);
         }
     }
 </script>

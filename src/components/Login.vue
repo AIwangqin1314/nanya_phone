@@ -95,7 +95,8 @@
                                                 name: this.username,
                                                 phone: this.phone,
                                                 BirthDay:this.BirthDay,
-                                                strCardNo:this.strCardNo
+                                                strCardNo:this.strCardNo,
+                                                strSex: "登录"
                                             }
                                         })
                                 }else{
