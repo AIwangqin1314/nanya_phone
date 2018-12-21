@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1>提交结果</h1>
-        <img alt="运势图" src=""  v-lazy="imageList"  class="img_login">
+        <img alt="运势图" src=""  v-lazy="imageList"  class="img_post">
 
     </div>
 </template>
@@ -25,4 +25,7 @@
 </script>
 
 <style>
+    .img_post{
+
+    }
 </style>

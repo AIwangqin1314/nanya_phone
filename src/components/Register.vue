@@ -171,7 +171,7 @@
                                         }
                                     })
                                 }else{
-                                    if(response.data.result.status==="ok") {
+                                    if(response.data.result.status==="success") {
                                         // this.$toast("该用户未注册，请到注册界面注册!");
                                         this.$toast(respny.data.result.data.Exception + ",请到登录界面登录!");
                                     }else

@@ -21,9 +21,8 @@
         <van-field
                 v-model="wish"
                 label="愿望填写，不超6个字"
-                is-link arrow-direction="down"
-                @click="change_picker_show"
-                readonly="true"
+                
+                required
         />
     </van-cell-group>
         <br>
