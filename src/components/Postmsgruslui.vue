@@ -1,23 +1,26 @@
 <template>
     <div>
         <h1>提交结果</h1>
-        <h4>生日快乐</h4>
-        <!--<img src=""  v-lazy="imageList" >-->
-        <img alt="运势图" >
+        <img alt="运势图" src=""  v-lazy="imageList"  class="img_login">
+
     </div>
 </template>
 <script>
+    import global_ from './Dt/Global'
     export default {
         data() {
             return {
                 picid:"",
                 name:"",
-                imageList: 'http://st2.depositphotos.com/thumbs/2627021/image/9638/96385166/api_thumb_450.jpg!thumb'};
+                pic_num:15,
+                imageList: 'http://129.204.65.155/pic/ny'+global_.token+'.jpg'};
         },
-        mounted:function(){
-            this.name=this.$route.params.name;
-            this.picid=this.$route.params.picid;
-        }
+        // mounted:function(){
+        //     this.name=this.$route.params.name;
+        //     global_.token=this.$route.params.picid;
+        //     console.log(this.$route.params.picid);
+        //
+        // }
     }
 </script>
 

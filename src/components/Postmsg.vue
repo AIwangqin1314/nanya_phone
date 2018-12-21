@@ -43,6 +43,7 @@
 </template>
 
 <script>
+    import global_ from './Dt/Global'
     export default {
         data(){
             return{
@@ -90,18 +91,19 @@
                         }
                     })
                         .then(resp => {
-                            console.log(resp.data);
+                            console.log(resp.data.id);
                             if(resp.data.status==="ok"){
+                                global_.token=resp.data.id;
                                 this.$router.push({
                                     name: 'post_resp',
                                     params: {
                                         name: this.name_uer,
-                                        picid: resp.data.picid,
+                                        picid: resp.data.id,
                                     }
                                 })
 
                             }else {
-                                this.$toast(`请求失败请重试！`);
+                                this.$toast(`您已经提交过愿望了，请勿重复提交`);
                             }
                         }).catch(err => {             //
                         console.log('请求失败：'+err.status+','+err.statusText);
