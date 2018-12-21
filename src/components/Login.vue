@@ -99,15 +99,9 @@
                                             }
                                         })
                                 }else{
-                                        if(response.data.result.status==="ok") {
-                                            // this.$toast("该用户未注册，请到注册界面注册!");
-                                            this.$toast(respny.data.result.data.Exception+",请到注册界面注册!");
-                                        }else
-                                        {
-                                            this.$toast("登录失败,请重试");
-                                        }
+                                        
                                    // this.$toast("该用户未注册，请到注册界面注册!");
-
+                                        this.$toast(respny.data.result.data.Exception+",请到注册界面注册!");
                                 }
                             })
                             .catch(function (error) {
