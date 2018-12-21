@@ -73,7 +73,7 @@
                 dateTimeshow:false,
                 phone:"",
                 sex:"",
-                currentDate: new Date(2019, 0, 1),
+                currentDate: new Date(1990, 0, 1),
                 username:"",
                 show:false,
                 BirthDay:"",

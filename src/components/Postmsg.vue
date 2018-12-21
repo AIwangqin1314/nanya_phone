@@ -2,7 +2,7 @@
     <div>
         <!--<audio src="/audios/brithday.mp3" autoplay loop></audio>-->
         <img src="http://nxha.ynnsd.com/Areas/Pages/Content/images/img_logo.png" class="img_login" />
-    <h4>愿望选择</h4>
+    <h4>新年心愿</h4>
     <br>
     <van-cell-group id="cell_all" >
         <van-field

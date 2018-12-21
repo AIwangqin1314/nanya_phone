@@ -67,12 +67,13 @@
                                         .then(resp => {
                                             console.log(resp.data);
                                             if (resp.data.stuat === 1) {
-                                               // toast.message = resp.data.jieguo;
-                                                if(resp.data.jieguo==="有人"){
+                                                if(resp.data.jieguo==="有人用"){
                                                     toast.message = "有人使用，请稍后重试！";
                                                 }else if (resp.data.jieguo==="无人站") {
                                                     toast.message = "请站在台上，请稍后重试！";
-                                                }else {
+                                                }else if (resp.data.jieguo==="结果") {
+
+                                                }else{
                                                     toast.message = "设备断线，请稍后重试！";
                                                 }
                                                 this.$toast.clear();
