@@ -100,7 +100,7 @@
                 this.$toast.success("取消选择");
             },
             requestData(){
-                if (this.name_uer === "") {
+                if (this.username === "") {
                     this.$toast("用户名不能空");
                 } else if (this.BirthDay === '') {
                     this.$toast("生日未选择");
