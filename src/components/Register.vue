@@ -137,6 +137,12 @@
                     } else if (/[0-9]/.test(this.username)) {
                         this.$toast("用户名不能包含数字");
                     } else {
+                        const toastr = this.$toast.loading({
+                            duration: 0,
+                            forbidClick: true,
+                            loadingType: 'spinner',
+                            message: "正在注册"
+                        });
                         var da1 =  JSON.stringify({
                             id:this.id,
                             method:"nymc_member_register",
@@ -162,6 +168,7 @@
                                 console.log(this.strCardNo);
                                 //成功后要注册后台服务
                                 if (response.data.result.data.HasException===false) {
+                                    this.$toast.clear();
                                     this.$router.push({
                                         name: 'post_msg',
                                         params: {
@@ -175,9 +182,11 @@
                                 }else{
                                     if(response.data.result.status==="success") {
                                         // this.$toast("该用户未注册，请到注册界面注册!");
+
                                         this.$toast(respny.data.result.data.Exception + ",请到登录界面登录!");
                                     }else
                                     {
+
                                         this.$toast("注册失败,请重试");
                                     }
                                 }
