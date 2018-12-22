@@ -2,7 +2,7 @@
     <div>
         <!--<audio src="/audios/brithday.mp3" autoplay loop></audio>-->
         <img src="http://nxha.ynnsd.com/Areas/Pages/Content/images/img_logo.png" class="img_login" />
-    <h4>新年心愿</h4>
+    <h4>填写心愿会出现您的2019年运势哦！</h4>
     <br>
     <van-cell-group id="cell_all" >
         <van-field
@@ -20,7 +20,7 @@
         />
         <van-field
                 v-model="wish"
-                label="愿望填写"
+                label="心愿填写"
                 placeholder="不超25个汉字或字母"
                 required
         />

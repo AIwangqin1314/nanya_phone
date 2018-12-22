@@ -2,9 +2,9 @@
     <div>
         <img src="http://nxha.ynnsd.com/Areas/Pages/Content/images/img_logo.png" class="img_login" />
         <br>
-        <h3>验证手机号</h3>
+        <h3>设备信息验证</h3>
         <van-cell-group>
-            <van-field v-model="ID_value" placeholder="请输入号码" />
+            <van-field v-model="ID_value" placeholder="请输入登录时的电话号码" />
         </van-cell-group>
         <br>
         <van-button round type="danger" @click="get_id" >启动</van-button>

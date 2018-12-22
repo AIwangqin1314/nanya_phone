@@ -2,7 +2,7 @@
     <div>
         <img src="http://nxha.ynnsd.com/Areas/Pages/Content/images/img_logo.png" class="img_login" />
         <br>
-        <h3>注册</h3>
+        <h3>欢迎新会员注册</h3>
         <van-cell-group id="cell_all">
             <van-field
                     v-model="username"
