@@ -1,7 +1,8 @@
 <template>
 <div >
     <img src="http://nxha.ynnsd.com/Areas/Pages/Content/images/img_logo.png" class="img_login" />
-    <h4>登录</h4>
+    <div class="bk">
+        <h4>登录</h4>
     <van-cell-group id="cell_all">
         <van-field
                 v-model="username"
@@ -21,18 +22,16 @@
                 required
         />
     </van-cell-group>
-    <br>
-    <!--<van-button round type="danger">登录</van-button>-->
-    <div>
-
         <van-row type="flex" justify="space-around">
             <van-button round type="danger" @click="post_msg_click" >登录</van-button>
             <van-button round type="danger" @click="register_click">注册</van-button>
         </van-row>
+    </div>
+
         <!--<van-button round type="danger" class="right_button">登录</van-button>-->
         <!--<router-link to="/Register" class="left_button">注册</router-link>-->
         <!--<router-link to="/Register" class="left_button">注册</router-link>-->
-    </div>
+
 
 </div>
 </template>
@@ -130,6 +129,27 @@
     .img_login{
         width: 40%;
         height: 40%;
+
+    }
+    .bk{
+        font-family: 'Avenir', Helvetica, Arial, sans-serif;
+
+        position: fixed;
+        left: 10%;
+        height: 35%;
+        width: 80%;
+
+        background-size: 100% 100%;
+        background-color:#f8f8f8;
+        opacity:0.4;
+
+    }
+    .log{
+        position: fixed;
+        top: 100%;
+        height: 25%;
+        background: #2c3e50;
+        background-size: 100% 100%;
     }
 
 </style>

@@ -153,9 +153,14 @@
         }
     }
 </script>
-<style>
+<style >
+
    #cell_all{
-        text-align:left;
+
+
+
+       background-color: #3f5c6d2c;
+
     }
 </style>
 
