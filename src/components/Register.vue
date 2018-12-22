@@ -167,7 +167,7 @@
                                 //this.$toast(params.request.response);
                                 console.log(this.strCardNo);
                                 //成功后要注册后台服务
-                                if (response.data.result.data.HasException===false) {
+                                    if (response.data.result.data.HasException===false) {
                                     this.$toast.clear();
                                     this.$router.push({
                                         name: 'post_msg',
@@ -183,7 +183,7 @@
                                     if(response.data.result.status==="success") {
                                         // this.$toast("该用户未注册，请到注册界面注册!");
 
-                                        this.$toast(respny.data.result.data.Exception + ",请到登录界面登录!");
+                                        this.$toast(response.data.result.data.Exception + ",请到登录界面登录!");
                                     }else
                                     {
 
