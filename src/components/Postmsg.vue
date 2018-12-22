@@ -21,7 +21,7 @@
         <van-field
                 v-model="wish"
                 label="愿望填写"
-                placeholder="不超20个汉字或字母"
+                placeholder="不超25个汉字或字母"
                 required
         />
     </van-cell-group>
@@ -77,8 +77,8 @@
             requestData(){
                     if (this.wish===""){
                 this.$toast("愿望未填写");
-                }else if(this.wish.length>20){
-                        this.$toast("愿望填写超过20个字,请删除");
+                }else if(this.wish.length>25){
+                        this.$toast("愿望填写超过25个字,请删除");
                     }else {
                         console.log(this.wish.length);
                     this.$ajax.get('/app/Nayajavaee/Houtai',{
