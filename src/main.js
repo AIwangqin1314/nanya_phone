@@ -29,6 +29,7 @@ Vue.use(Lazyload,{
 });
 Vue.use(Popup);
 Vue.use(Toast);
+Toast.setDefaultOptions({duration:500});
 Vue.prototype.$toast = Toast;
 Vue.use(Picker);
 Vue.use(Field);
