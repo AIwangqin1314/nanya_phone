@@ -8,15 +8,16 @@
         <van-field
                 v-model="name_uer"
                 label="用户名"
+                required
 
-                disabled
         />
         <van-field
                 v-model="BirthDay"
                 label="生日"
-
-
-                disabled
+                is-link arrow-direction="down"
+                @click="change_picker_show"
+                readonly="true"
+                required
         />
         <van-field
                 v-model="wish"
@@ -26,26 +27,33 @@
         />
     </van-cell-group>
         <br>
-    <!--<van-cell  v-model="cell_value" title="礼物" is-link arrow-direction="down" @click="change_picker_show" />-->
             <van-button type="primary" @click="requestData">提交</van-button>
-            <van-popup v-model="show" position="bottom" :overlay="false">
-                <van-picker
-                        show-toolbar
-                        title="礼物选择"
-                        :columns="columns"
-                        @cancel="onCancel"
-                        @confirm="onConfirm"
-                />
-            </van-popup>
 
+        <van-popup v-model="dateTimeshow" position="bottom" :overlay="false">
+            <van-datetime-picker
+                    v-model="currentDate"
+                    type="date"
+                    :min-date="minDate"
+                    :formatter="formatter"
+                    @cancel="ondateCancel"
+                    @confirm="ondateConfirm"
+            />
+        </van-popup>
     </div>
 </template>
 
 <script>
     import global_ from './Dt/Global'
+    import { formatDate } from './Dt/Dt';
     export default {
         data(){
             return{
+                currentDate: new Date(1990, 0, 1),
+                dateTimeshow:false,
+                year: '年',
+                month: '月',
+                date:"日",
+                minDate: new Date(1950, 0, 1),
                 putinmsg:"",
                 value:"",
                 Ssex:"",
@@ -59,6 +67,29 @@
             }
         },
         methods:{
+            ondateConfirm( value){
+                this.dateTimeshow=false;
+                this.BirthDay=formatDate(value,"yyyy-MM-dd");
+            },
+            ondateCancel(){
+                this.dateTimeshow=false;
+                this.$toast.success("取消选择");
+            },
+            change_picker_show(){
+                this.dateTimeshow=true;
+            },
+            formatter(type, value) {
+                if (type === 'year') {
+                    return value + this.year;
+                }
+                if (type === 'month') {
+                    return value + this.month;
+                }
+                if (type === 'day') {
+                    return value + this.date;
+                }
+                return value;
+            },
             onConfirm(picker, value, index){
                 // this.$toast(`当前值：${value}, 当前索引：${index}`);
                 this.show=false;
@@ -68,14 +99,12 @@
                 this.show=false;
                 this.$toast.success("取消选择");
             },
-            change_picker_show(){
-            this.show=true;
-            },
-            postmsg_button(){
-                this.$router.push({ path:'/Postmsgruslui'})
-            },
             requestData(){
-                    if (this.wish===""){
+                if (this.username === "") {
+                    this.$toast("用户名不能空");
+                } else if (this.BirthDay === '') {
+                    this.$toast("生日未选择");
+                }else if (this.wish===""){
                 this.$toast("愿望未填写");
                 }else if(this.wish.length>25){
                         this.$toast("愿望填写超过25个字,请删除");

@@ -93,7 +93,7 @@
                             } else {
                                 this.resp_id = 0;
                                 //this.$toast.clear();
-                                this.$toast("此号码未登录，请扫码登陆许愿后操作");
+                                this.$toast("此号码未登录，或30内才使用完毕！");
 
                             }
                         }).catch(err => {             //
