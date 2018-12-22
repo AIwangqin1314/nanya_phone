@@ -183,7 +183,7 @@
                                     if(response.data.result.status==="success") {
                                         // this.$toast("该用户未注册，请到注册界面注册!");
 
-                                        this.$toast(response.data.result.data.Exception + ",请到登录界面登录!");
+                                        this.$toast(response.data.result.data.Exception.substr(0,20) + ",请到登录界面登录!");
                                     }else
                                     {
 
