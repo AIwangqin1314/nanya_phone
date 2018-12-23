@@ -1,7 +1,7 @@
 <template>
     <div>
         <!--<audio src="/audios/brithday.mp3" autoplay loop></audio>-->
-        <img src="http://nxha.ynnsd.com/Areas/Pages/Content/images/img_logo.png" class="img_login" />
+        <img src="http://129.204.65.155/img/log.png" class="img_login" />
     <h4>填写心愿会出现您的2019年运势哦！</h4>
     <br>
         <div  class="cellss">
@@ -117,6 +117,8 @@
             requestData(){
                 if (this.name_uer === "") {
                     this.$toast("用户名不能空");
+                }else if (this.name_uer.length >10) {
+                    this.$toast("用户名不能超过10个字,请删除");
                 } else if (this.BirthDay === '') {
                     this.$toast("生日未选择");
                 }else if (this.wish===""){

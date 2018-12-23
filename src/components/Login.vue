@@ -1,6 +1,6 @@
 <template>
-<div >
-    <img src="http://nxha.ynnsd.com/Areas/Pages/Content/images/img_logo.png" class="img_login" />
+<div>
+    <img src="http://129.204.65.155/img/log.png" class="img_login" />
 
         <h4>登录</h4>
     <div  class="cellss">
@@ -130,20 +130,14 @@
     .img_login{
         width: 40%;
         height: 40%;
-
+        margin-top: 40px;
     }
     .cellss{
 
         text-align: left;
         opacity:0.8;
     }
-    .log{
-        position: fixed;
-        top: 100%;
-        height: 25%;
-        background: #2c3e50;
-        background-size: 100% 100%;
-    }
+
 
 </style>
 

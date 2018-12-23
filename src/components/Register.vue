@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img src="http://nxha.ynnsd.com/Areas/Pages/Content/images/img_logo.png" class="img_login" />
+        <img src="http://129.204.65.155/img/log.png" class="img_login" />
         <br>
         <h3>欢迎新会员注册</h3>
         <div  class="cellss">

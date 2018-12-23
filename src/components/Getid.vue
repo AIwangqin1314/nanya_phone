@@ -1,6 +1,7 @@
 <template>
-    <div>
-        <img src="http://nxha.ynnsd.com/Areas/Pages/Content/images/img_logo.png" class="img_login" />
+    <div >
+        <img src="http://129.204.65.155/img/logoi.png" class="img_login" />
+
         <br>
         <h3>设备信息验证</h3>
         <van-row type="flex" justify="space-around" >

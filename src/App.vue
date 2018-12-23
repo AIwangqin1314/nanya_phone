@@ -15,9 +15,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 30px;
   height: 100vh;
-  background: url("./assets/bk.jpg");
+  background: url("./assets/bk.png");
   background-size: 100% 100%;
 }
 </style>
