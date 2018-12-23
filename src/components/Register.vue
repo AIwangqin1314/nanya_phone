@@ -3,40 +3,56 @@
         <img src="http://nxha.ynnsd.com/Areas/Pages/Content/images/img_logo.png" class="img_login" />
         <br>
         <h3>欢迎新会员注册</h3>
-        <van-cell-group id="cell_all">
-            <van-field
-                    v-model="username"
-                    required
-                    clearable
-                    label="用户名"
-                    placeholder="请输入用户名"
-            />
-
-            <van-field
-                v-model="sex"
-                label="性别"
-                placeholder="点击选择"
-                @click="select_sex"
-                required
-                readonly="true"
-        />
-            <van-field
-                    v-model="phone"
-                    label="电话"
-                    placeholder="请输入电话"
-                    required
-            />
-            <van-field
-                    v-model="BirthDay"
-                    label="生日"
-                    is-link arrow-direction="down"
-                    @click="change_picker_show"
-                    readonly="true"
-                    required
-            />
-
-        </van-cell-group>
-
+        <div  class="cellss">
+            <van-row type="flex" justify="space-around" >
+                <van-col span="18" >
+                    <van-field
+                            v-model="username"
+                            required
+                            clearable
+                            label="用户名"
+                            placeholder="请输入用户名"
+                    />
+                </van-col>
+            </van-row>
+            <br>
+            <van-row type="flex" justify="space-around" >
+                <van-col span="18" >
+                    <van-field
+                            v-model="sex"
+                            label="性别"
+                            placeholder="点击选择"
+                            @click="select_sex"
+                            required
+                            readonly="true"
+                    />
+                </van-col>
+            </van-row>
+            <br>
+            <van-row type="flex" justify="space-around" >
+                <van-col span="18" >
+                    <van-field
+                            v-model="phone"
+                            label="电话"
+                            placeholder="请输入电话"
+                            required
+                    />
+                </van-col>
+            </van-row>
+            <br>
+            <van-row type="flex" justify="space-around" >
+                <van-col span="18" >
+                    <van-field
+                            v-model="BirthDay"
+                            label="生日"
+                            is-link arrow-direction="down"
+                            @click="change_picker_show"
+                            readonly="true"
+                            required
+                    />
+                </van-col>
+            </van-row>
+        </div>
         <br>
         <van-button round type="danger" @click="up_register">注册</van-button>
 

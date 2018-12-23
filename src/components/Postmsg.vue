@@ -4,28 +4,43 @@
         <img src="http://nxha.ynnsd.com/Areas/Pages/Content/images/img_logo.png" class="img_login" />
     <h4>填写心愿会出现您的2019年运势哦！</h4>
     <br>
-    <van-cell-group id="cell_all" >
-        <van-field
-                v-model="name_uer"
-                label="用户名"
-                required
+        <div  class="cellss">
+            <van-row type="flex" justify="space-around" >
+                <van-col span="18" >
+                    <van-field
+                            v-model="name_uer"
+                            label="用户名"
+                            required
 
-        />
-        <van-field
-                v-model="BirthDay"
-                label="生日"
-                is-link arrow-direction="down"
-                @click="change_picker_show"
-                readonly="true"
-                required
-        />
-        <van-field
-                v-model="wish"
-                label="心愿填写"
-                placeholder="不超25个汉字或字母"
-                required
-        />
-    </van-cell-group>
+                    />
+                </van-col>
+            </van-row>
+                <br>
+                <van-row type="flex" justify="space-around" >
+                <van-col span="18" >
+                    <van-field
+                            v-model="BirthDay"
+                            label="生日"
+                            is-link arrow-direction="down"
+                            @click="change_picker_show"
+                            readonly="true"
+                            required
+                    />
+                </van-col>
+                </van-row>
+                <br>
+                    <van-row type="flex" justify="space-around" >
+                <van-col span="18" >
+                    <van-field
+                            v-model="wish"
+                            label="心愿填写"
+                            placeholder="不超25个汉字或字母"
+                            autosize
+                            required
+                    />
+                </van-col>
+            </van-row>
+        </div>
         <br>
             <van-button type="primary" @click="requestData">提交</van-button>
 
@@ -154,13 +169,5 @@
     }
 </script>
 <style >
-
-   #cell_all{
-
-
-
-       background-color: #3f5c6d2c;
-
-    }
 </style>
 

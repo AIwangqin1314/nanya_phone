@@ -1,38 +1,39 @@
 <template>
 <div >
     <img src="http://nxha.ynnsd.com/Areas/Pages/Content/images/img_logo.png" class="img_login" />
-    <div class="bk">
-        <h4>登录</h4>
-    <van-cell-group id="cell_all">
-        <van-field
-                v-model="username"
-                required
-                clearable
-                label="用户名"
-                icon="question"
-                placeholder="请输入用户名"
-                @click-icon="$toast('有疑问请拔打9553067')"
-        />
 
-        <van-field
-                v-model="phone"
-                type="tel"
-                label="电话号码"
-                placeholder="请输入电话号码"
-                required
-        />
-    </van-cell-group>
+        <h4>登录</h4>
+    <div  class="cellss">
+    <van-row type="flex" justify="space-around" >
+        <van-col span="18" >
+            <van-field
+                    v-model="username"
+                    required
+                    clearable
+                    label="用户名"
+                    placeholder="请输入用户名"
+                    border="true"
+            />
+        </van-col>
+    </van-row>
+    <br>
+    <van-row type="flex" justify="space-around">
+        <van-col span="18" >
+                <van-field
+                        v-model="phone"
+                        type="tel"
+                        label="电话号码"
+                        placeholder="请输入电话号码"
+                        required
+                />
+        </van-col>
+    </van-row>
+</div>
+    <br>
         <van-row type="flex" justify="space-around">
             <van-button round type="danger" @click="post_msg_click" >登录</van-button>
             <van-button round type="danger" @click="register_click">注册</van-button>
         </van-row>
-    </div>
-
-        <!--<van-button round type="danger" class="right_button">登录</van-button>-->
-        <!--<router-link to="/Register" class="left_button">注册</router-link>-->
-        <!--<router-link to="/Register" class="left_button">注册</router-link>-->
-
-
 </div>
 </template>
 
@@ -131,18 +132,10 @@
         height: 40%;
 
     }
-    .bk{
-        font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    .cellss{
 
-        position: fixed;
-        left: 10%;
-        height: 35%;
-        width: 80%;
-
-        background-size: 100% 100%;
-        background-color:#f8f8f8;
-        opacity:0.4;
-
+        text-align: left;
+        opacity:0.8;
     }
     .log{
         position: fixed;
