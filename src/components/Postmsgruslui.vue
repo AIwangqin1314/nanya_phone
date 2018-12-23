@@ -1,6 +1,5 @@
 <template>
     <div class="post">
-        <h4>运势图</h4>
         <!--<img alt="运势图" src=""  v-lazy="imageList"  class="img_post">-->
         <img alt="运势图" src="http://129.204.65.155/pic/ny.jpg"   class="img_post">
     </div>

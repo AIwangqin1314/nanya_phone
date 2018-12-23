@@ -10,8 +10,8 @@
                     v-model="username"
                     required
                     clearable
-                    label="用户名"
-                    placeholder="请输入用户名"
+                    label="诺享会账号"
+                    placeholder="请输入账号"
                     border="true"
             />
         </van-col>
@@ -59,7 +59,7 @@
             },
             post_msg_click() {
                 if (this.username === '') {
-                     this.$toast("用户名不能空");
+                     this.$toast("诺享会账号不能空");
                 }else if (this.phone === '') {
                     this.$toast("电话不能空");
                 } else {

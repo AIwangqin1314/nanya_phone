@@ -99,7 +99,7 @@
                                     duration: 1000,
                                     forbidClick: true,
                                     loadingType: 'spinner',
-                                    message: "此号码30分钟内才使用完毕，请稍后重试！"
+                                    message: "30分钟内一账号操作一次，请稍后重试！"
                                 });
                             } else {
                                 this.resp_id = 0;
