@@ -92,10 +92,19 @@
                                     toast.message = "启动号码错误请重试！";
                                     this.$toast.clear();
                                 }
+                            }else if (resp.data.status === "theer") {
+                                this.resp_id = 0;
+                                //this.$toast.clear();
+                                const toastr = this.$toast.fail({
+                                    duration: 1000,
+                                    forbidClick: true,
+                                    loadingType: 'spinner',
+                                    message: "此号码30分钟内才使用完毕，请稍后重试！"
+                                });
                             } else {
                                 this.resp_id = 0;
                                 //this.$toast.clear();
-                                this.$toast("此号码未登录，或30内才使用完毕！");
+                                this.$toast("此号码未登录,请扫码登录后重试！");
 
                             }
                         }).catch(err => {             //
