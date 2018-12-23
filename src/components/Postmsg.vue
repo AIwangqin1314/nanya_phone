@@ -42,7 +42,7 @@
             </van-row>
         </div>
         <br>
-            <van-button type="primary" @click="requestData">提交</van-button>
+            <van-button round type="primary" @click="requestData">提交</van-button>
 
         <van-popup v-model="dateTimeshow" position="bottom" :overlay="false">
             <van-datetime-picker

@@ -3,6 +3,8 @@
         <img src="http://129.204.65.155/img/logoi.png" class="img_login" />
 
         <br>
+        <br>
+        <br>
         <h3>设备信息验证</h3>
         <van-row type="flex" justify="space-around" >
             <van-col span="18" >
@@ -10,7 +12,7 @@
             </van-col>
         </van-row>
         <br>
-        <van-button round type="danger" @click="get_id" >启动</van-button>
+        <van-button round type="primary" @click="get_id" >启动</van-button>
 
     </div>
 </template>

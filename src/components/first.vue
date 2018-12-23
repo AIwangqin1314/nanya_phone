@@ -1,6 +1,16 @@
 <template>
-    <div class="fisst">
-        <van-button round type="danger" @click="get_id" >启动</van-button>
+    <div id="f" class="fisst">
+        <br>
+        <br><br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="buto">
+
+        <van-button round type="primary" size="large" @click="get_id" >开始测试</van-button>
+
+        </div>
     </div>
 </template>
 
@@ -15,11 +25,17 @@
     }
 </script>
 
-<style scoped>
-.fisst{
-    height: 100vh;
-    background: url("../assets/fs.png");
-    background-size: 100% 100%;
-    margin-bottom: 40px;
-}
+<style  lang="less">
+    @import '../style/var.less';
+    #f{
+        background: url("../assets/fs.png");
+        background-size: 100% 100%;
+        height: 100vh;
+    }
+.buto{
+    position:fixed; bottom:10%;
+    left: 40%;
+
+ }
+
 </style>

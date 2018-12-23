@@ -1,7 +1,10 @@
 <template>
 <div>
     <img src="http://129.204.65.155/img/log.png" class="img_login" />
-
+    <br>
+    <br>
+    <br>
+    <br>
         <h4>登录</h4>
     <div  class="cellss">
     <van-row type="flex" justify="space-around" >
@@ -31,8 +34,8 @@
 </div>
     <br>
         <van-row type="flex" justify="space-around">
-            <van-button round type="danger" @click="post_msg_click" >登录</van-button>
-            <van-button round type="danger" @click="register_click">注册</van-button>
+            <van-button round type="primary" @click="post_msg_click" >登录</van-button>
+            <van-button round type="primary" @click="register_click">注册</van-button>
         </van-row>
 </div>
 </template>

@@ -1,4 +1,16 @@
 module.exports = {
+    css: {
+        loaderOptions: {
+            less: {
+                modifyVars: {
+                    green: '#3366cc',
+                    blue: '#3eaf7c',
+                    orange: '#f08d49',
+                }
+            }
+        }
+    },
+
     devServer: {
         //port: 80,
         //port: 8081, // vue启动端口

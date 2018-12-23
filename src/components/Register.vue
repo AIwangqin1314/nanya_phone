@@ -1,7 +1,7 @@
 <template>
     <div>
         <img src="http://129.204.65.155/img/log.png" class="img_login" />
-        <br>
+
         <h3>欢迎新会员注册</h3>
         <div  class="cellss">
             <van-row type="flex" justify="space-around" >
@@ -53,8 +53,7 @@
                 </van-col>
             </van-row>
         </div>
-        <br>
-        <van-button round type="danger" @click="up_register">注册</van-button>
+        <van-button round type="primary" @click="up_register">注册</van-button>
 
             <van-popup v-model="dateTimeshow" position="bottom" :overlay="false">
                 <van-datetime-picker
