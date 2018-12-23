@@ -3,9 +3,11 @@
         <img src="http://nxha.ynnsd.com/Areas/Pages/Content/images/img_logo.png" class="img_login" />
         <br>
         <h3>设备信息验证</h3>
-        <van-cell-group>
+        <van-row type="flex" justify="space-around" >
+            <van-col span="18" >
             <van-field v-model="ID_value" placeholder="请输入登录时的电话号码" />
-        </van-cell-group>
+            </van-col>
+        </van-row>
         <br>
         <van-button round type="danger" @click="get_id" >启动</van-button>
 
