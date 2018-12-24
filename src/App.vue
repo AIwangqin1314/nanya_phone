@@ -1,44 +1,32 @@
 <template>
-  <div id="app" >
+  <div id="app" class="vuer">
     <router-view></router-view>
   </div>
 </template>
 <script>
 export default {
   name: 'app',
-    date(){
-        bodyHeight:""
-    },
+
     mounted:function(){
+        // 获取浏览器的高度
+        let h = document.body.clientHeight || document.documentElement.clientHeight // 解决背景图变形
+        document.getElementsByClassName('vuer')[0].style.height = h + 'px'
 
-        var screenHeight;
-        if (window.innerHeight){
-            screenHeight = window.innerHeight;
-        } else if ((document.body) && (document.body.clientHeight)){
-            screenHeight = document.body.clientHeight;
-        }
-        $("html,body").height(screenHeight);
-    }
-    //     var viewHeight = window.innerHeight;
-    //     $(document).ready(function () {
-    //         var viewHeight = window.innerHeight;
-    //         $().height(viewHeight)
-    //         $().height(viewHeight * x%)
-    //         $().height(viewHeight * y%)
-    //     })
+  }
+}
 
-
-    }
 </script>
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  height: 100vh;
-  background: url("./assets/bk.png");
-  background-size: 100% 100%;
-}
+#app { }
+  .vuer {
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    height: 100vh;
+    background: url("./assets/bk.png");
+    background-size: 100% 100%;
+  }
+
 </style>
