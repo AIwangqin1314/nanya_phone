@@ -1,7 +1,7 @@
 <template>
     <div class="post">
         <!--<img alt="运势图" src=""  v-lazy="imageList"  class="img_post">-->
-        <img alt="运势图" src="http://129.204.65.155/pic/ny.jpg"   class="img_post">
+        <img :src="weatherArr" alt="运势图"  class="img_post">
     </div>
 </template>
 <script>
@@ -9,23 +9,17 @@
     export default {
         data() {
             return {
+                weatherArr : "",
                 picid:"",
                 name:"",
                 urk:"",
                 pic_num:15,
                 imageList: 'http://129.204.65.155/pic/ny'+global_.token+'.jpg'};
         },
-        // created(){
-        //
-        //     this.urk = require('http://129.204.65.155/pic/ny'+global_.token+'.jpg');
-        //
-        // }
-        // mounted:function(){
-        //     // this.name=this.$route.params.name;
-        //     // global_.token=this.$route.params.picid;
-        //     // console.log(this.$route.params.picid);
-        //
-        // }
+        mounted:function(){
+            this.weatherArr="http://129.204.65.155/pic/ny"+this.$route.params.picid+".jpg";
+            console.log(this.weatherArr);
+        }
     }
 </script>
 
