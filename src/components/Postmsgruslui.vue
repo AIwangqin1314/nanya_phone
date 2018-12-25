@@ -2,6 +2,8 @@
     <div class="post">
         <!--<img alt="运势图" src=""  v-lazy="imageList"  class="img_post">-->
         <img :src="weatherArr" alt="运势图"  class="img_post">
+        <van-popup v-model="show":overlay="true" overlay-class="overlay_post">
+        </van-popup>
     </div>
 </template>
 <script>
@@ -9,6 +11,7 @@
     export default {
         data() {
             return {
+                show:true,
                 weatherArr : "",
                 picid:"",
                 name:"",
@@ -30,5 +33,9 @@
     }
     .post{
         background: #f8f8f8;
+    }
+    .overlay_post{
+        background: url("../assets/share.png")no-repeat center ;
+        background-size: contain;
     }
 </style>
