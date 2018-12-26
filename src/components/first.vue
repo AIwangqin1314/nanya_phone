@@ -1,6 +1,6 @@
 <template>
     <div id="f" class="fisst">
-        <van-button  round type="primary" size="normal" @click="get_id" >开始测试</van-button>
+        <van-button id="ok" round type="primary" size="normal" @click="get_id" >开始测试</van-button>
     </div>
 </template>
 
@@ -22,7 +22,7 @@
         background-size: 100% 100%;
         height: 100vh;
     }
-    .van-button {
+    #ok{
         position:fixed;
         bottom:10%;
         left: 40%;
