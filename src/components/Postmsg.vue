@@ -54,6 +54,8 @@
                     @confirm="ondateConfirm"
             />
         </van-popup>
+        <van-popup v-model="toal_show":overlay="true" overlay-class="overlay_toal":close-on-click-overlay="false">
+        </van-popup>
     </div>
 </template>
 
@@ -63,6 +65,7 @@
     export default {
         data(){
             return{
+                toal_show:false,
                 currentDate: new Date(1990, 0, 1),
                 dateTimeshow:false,
                 year: '年',
@@ -77,7 +80,6 @@
                 strCardNo:"",
                 phone:"",
                 wish:"",
-                columns: ['手机', 'iPad', '苹果', '电视', '洗衣机'],
                 show:false
             }
         },
@@ -141,7 +143,7 @@
                         .then(resp => {
                             console.log(resp.data.id);
                             if(resp.data.status==="ok"){
-                                global_.token=resp.data.id;
+
                                 this.$router.push({
                                     name: 'post_resp',
                                     params: {
@@ -149,9 +151,20 @@
                                         picid: resp.data.id,
                                     }
                                 })
+                                // this.toal_show=true;
+                                // setTimeout(()=>{
+                                //     this.toal_show=false;
+                                //     this.$router.push({
+                                //         name: 'post_resp',
+                                //         params: {
+                                //             name: this.name_uer,
+                                //             picid: resp.data.id,
+                                //         }
+                                //     });
+                                // },3000);
 
                             }else {
-                                this.$toast(`您已经提交过愿望了，请勿重复提交`);
+                                this.$toast(`请求失败，请检查是否填写电话号码！`);
                             }
                         }).catch(err => {             //
                         console.log('请求失败：'+err.status+','+err.statusText);
@@ -171,5 +184,9 @@
     }
 </script>
 <style >
+    .overlay_toal{
+        background: url("../assets/toast.png")no-repeat center ;
+        background-size: contain;
+    }
 </style>
 

@@ -1,16 +1,11 @@
 <template>
     <div id="f" class="fisst">
-        <br>
-        <br><br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <div class="buto">
 
-        <van-button round type="primary" size="large" @click="get_id" >开始测试</van-button>
+        <!--<div class="buto">-->
 
-        </div>
+        <van-button  round type="primary" size="normal" @click="get_id" >开始测试</van-button>
+
+        <!--</div>-->
     </div>
 </template>
 
@@ -32,9 +27,14 @@
         background-size: 100% 100%;
         height: 100vh;
     }
+    .van-button {
+        position:fixed;
+        bottom:10%;
+        left: 40%;
+    }
 .buto{
-    position:fixed; bottom:10%;
-    left: 40%;
+    /*position:fixed; bottom:10%;*/
+    /*left: 10%;*/
 
  }
 

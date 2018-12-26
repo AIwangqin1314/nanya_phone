@@ -11,7 +11,7 @@
     export default {
         data() {
             return {
-                show:true,
+                show:false,
                 weatherArr : "",
                 picid:"",
                 name:"",
@@ -20,6 +20,13 @@
                 imageList: 'http://129.204.65.155/pic/ny'+global_.token+'.jpg'};
         },
         mounted:function(){
+            // if(this.$route.params.picid===null){
+            //     this.weatherArr=JSON.parse(localStorage.getItem("id"));
+            // }else{
+            // this.weatherArr="http://129.204.65.155/pic/ny"+this.$route.params.picid+".jpg";
+            // localStorage.setItem("id",JSON.stringify(this.weatherArr));
+            // }
+            // console.log(this.weatherArr);
             this.weatherArr="http://129.204.65.155/pic/ny"+this.$route.params.picid+".jpg";
             console.log(this.weatherArr);
         }

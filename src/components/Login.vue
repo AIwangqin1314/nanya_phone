@@ -3,8 +3,6 @@
     <img src="http://129.204.65.155/img/log.png" class="img_login" />
     <br>
     <br>
-    <br>
-    <br>
         <h4>登录</h4>
     <div  class="cellss">
     <van-row type="flex" justify="space-around" >
