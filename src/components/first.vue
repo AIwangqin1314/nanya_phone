@@ -9,7 +9,7 @@
         name: "",
         methods: {
             get_id(){
-                this.$router.push({path:'/Login'})
+                this.$router.push({path:'/Postmsg'})
             }
         }
     }

@@ -1,15 +1,25 @@
 <template>
     <div>
-        <!--<audio src="/audios/brithday.mp3" autoplay loop></audio>-->
         <img src="http://129.204.65.155/img/log.png" class="img_login" />
-    <h4>填写心愿会出现您的2019年运势哦！</h4>
-    <br>
+        <br>
+        <br>
         <div  class="cellss">
             <van-row type="flex" justify="space-around" >
                 <van-col span="18" >
                     <van-field
+                            v-model="phone"
+                            label="电话号码"
+
+                            required
+                    />
+                </van-col>
+            </van-row>
+            <br>
+            <van-row type="flex" justify="space-around" >
+                <van-col span="18" >
+                    <van-field
                             v-model="name_uer"
-                            label="用户名"
+                            label="昵称"
                             required
 
                     />
@@ -40,6 +50,8 @@
                     />
                 </van-col>
             </van-row>
+
+
         </div>
         <br>
             <van-button round type="primary" @click="requestData">提交</van-button>
@@ -66,6 +78,7 @@
         data(){
             return{
                 toal_show:false,
+                pic_s:"",
                 currentDate: new Date(1990, 0, 1),
                 dateTimeshow:false,
                 year: '年',
@@ -117,25 +130,33 @@
                 this.$toast.success("取消选择");
             },
             requestData(){
-                if (this.name_uer === "") {
-                    this.$toast("用户名不能空");
+                if (!/^1[3456789]\d{9}$/.test(this.phone)) {
+                    this.$toast("手机号格式不对");
+                }else if (this.name_uer === "") {
+                    this.$toast("昵称不能空");
                 }else if (this.name_uer.length >10) {
-                    this.$toast("用户名不能超过10个字,请删除");
+                    this.$toast("昵称不能超过10个字,请删除");
                 } else if (this.BirthDay === '') {
                     this.$toast("生日未选择");
                 }else if (this.wish===""){
                 this.$toast("愿望未填写");
                 }else if(this.wish.length>25){
                         this.$toast("愿望填写超过25个字,请删除");
-                    }else {
+                }else {
                         console.log(this.wish.length);
+                    const toast = this.$toast.loading({
+                        duration: 0,
+                        forbidClick: true,
+                        loadingType: 'spinner',
+                        message: "正在验证"
+                    });
                     this.$ajax.get('/app/Nayajavaee/Houtai',{
                         params:{
                             strName:this.name_uer,
                             BirthDay:this.BirthDay,
                             wish:this.wish,
-                            strSex:this.Ssex,
-                            strCardNo:this.strCardNo,
+                            strSex:"124",
+                            strCardNo:"no00001",
                             head:"twe",
                             phone:this.phone
                         }
@@ -143,25 +164,50 @@
                         .then(resp => {
                             console.log(resp.data.id);
                             if(resp.data.status==="ok"){
-
-                                this.$router.push({
-                                    name: 'post_resp',
+                                this.pic_s=resp.data.id;
+                                this.$ajax.get('/app/Servicehoutai/Client', {
                                     params: {
-                                        name: this.name_uer,
-                                        picid: resp.data.id,
+                                        name: "1",
+                                        id: resp.data.num,
+                                        flg: "ok"
                                     }
                                 })
-                                // this.toal_show=true;
-                                // setTimeout(()=>{
-                                //     this.toal_show=false;
-                                //     this.$router.push({
-                                //         name: 'post_resp',
-                                //         params: {
-                                //             name: this.name_uer,
-                                //             picid: resp.data.id,
-                                //         }
-                                //     });
-                                // },3000);
+                                    .then(resp => {
+                                        console.log(resp.data);
+                                        if (resp.data.stuat === 1) {
+                                            if(resp.data.jieguo==="有人用"){
+                                                toast.message = "有人使用，请稍后重试！";
+                                            }else if (resp.data.jieguo==="无人站") {
+                                                toast.message = "请站在台上，请稍后重试！";
+                                            }else if (resp.data.jieguo==="结果") {
+                                                this.$router.push({
+                                                    name: 'post_resp',
+                                                    params: {
+                                                        name: this.name_uer,
+                                                        picid:this.pic_s,
+                                                    }
+                                                })
+                                            }else{
+                                                toast.message = "设备断线，请稍后重试！";
+                                            }
+                                            this.$toast.clear();
+                                        } else {
+                                            toast.message = resp.data.jieguo;
+                                            this.$toast.clear();
+                                        }
+                                    }).catch(err => {             //
+                                    console.log('请求失败：' + err.status + ',' + err.statusText);
+                                    toast.message = "请求失败";
+                                    this.$toast.clear();
+                                })
+
+                                // this.$router.push({
+                                //     name: 'post_resp',
+                                //     params: {
+                                //         name: this.name_uer,
+                                //         picid: resp.data.id,
+                                //     }
+                                // })
 
                             }else {
                                 this.$toast(`请求失败，请检查是否填写电话号码！`);
@@ -173,14 +219,6 @@
                 }
     },
         },
-        mounted:function(){
-            this.name_uer=this.$route.params.name;
-            this.BirthDay=this.$route.params.BirthDay.substr(0,10);
-            this.phone=this.$route.params.phone;
-            this.strCardNo=this.$route.params.strCardNo;
-            this.Ssex=this.$route.params.strSex;
-            console.log(this.Ssex);
-        }
     }
 </script>
 <style >

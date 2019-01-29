@@ -131,7 +131,7 @@
     .img_login{
         width: 40%;
         height: 40%;
-        margin-top: 40px;
+        margin-top: 20px;
     }
     .cellss{
 

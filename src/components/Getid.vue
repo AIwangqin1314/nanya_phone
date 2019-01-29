@@ -1,10 +1,6 @@
 <template>
     <div >
         <img src="http://129.204.65.155/img/logoi.png" class="img_login" />
-
-        <br>
-        <br>
-        <br>
         <h3>设备信息验证</h3>
         <van-row type="flex" justify="space-around" >
             <van-col span="18" >
