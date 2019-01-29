@@ -66,13 +66,12 @@
                     @confirm="ondateConfirm"
             />
         </van-popup>
-        <van-popup v-model="toal_show":overlay="true" overlay-class="overlay_toal":close-on-click-overlay="false">
+        <van-popup v-model="toal_show":overlay="true" :close-on-click-overlay="false">
         </van-popup>
     </div>
 </template>
 
 <script>
-    import global_ from './Dt/Global'
     import { formatDate } from './Dt/Dt';
     export default {
         data(){
@@ -99,14 +98,17 @@
         methods:{
             ondateConfirm( value){
                 this.dateTimeshow=false;
+                this.toal_show=false;
                 this.BirthDay=formatDate(value,"yyyy-MM-dd");
             },
             ondateCancel(){
                 this.dateTimeshow=false;
+                this.toal_show=false;
                 this.$toast.success("取消选择");
             },
             change_picker_show(){
                 this.dateTimeshow=true;
+                this.toal_show=true;
             },
             formatter(type, value) {
                 if (type === 'year') {
@@ -120,7 +122,7 @@
                 }
                 return value;
             },
-            onConfirm(picker, value, index){
+            onConfirm(picker, value){
                 // this.$toast(`当前值：${value}, 当前索引：${index}`);
                 this.show=false;
                 this.wish=this.columns[value];
@@ -190,7 +192,11 @@
                                             }else{
                                                 toast.message = "设备断线，请稍后重试！";
                                             }
-                                            this.$toast.clear();
+                                            const timer = setInterval(() => {
+                                                    clearInterval(timer);
+                                                    this.$toast.clear();
+                                            }, 1000);
+                                           // this.$toast.clear();
                                         } else {
                                             toast.message = resp.data.jieguo;
                                             this.$toast.clear();
@@ -200,15 +206,6 @@
                                     toast.message = "请求失败";
                                     this.$toast.clear();
                                 })
-
-                                // this.$router.push({
-                                //     name: 'post_resp',
-                                //     params: {
-                                //         name: this.name_uer,
-                                //         picid: resp.data.id,
-                                //     }
-                                // })
-
                             }else {
                                 this.$toast(`请求失败，请检查是否填写电话号码！`);
                             }

@@ -108,11 +108,6 @@
                                             }
                                         })
                                 }else{
-
-                                   // this.$toast("该用户未注册，请到注册界面注册!");
-                                        //this.$toast.setDefaultOptions(duration,1000);
-                                        //toastr.duration=500;
-                                       // toastr.message="respny.data.result.data.Exception"+",请到注册界面注册!";
                                         this.$toast(respny.data.result.data.Exception+",请到注册界面注册!");
                                 }
                             })
